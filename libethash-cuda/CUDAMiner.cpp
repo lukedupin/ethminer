@@ -252,13 +252,18 @@ void CUDAMiner::kick_miner()
 
 int CUDAMiner::getNumDevices()
 {
-    int deviceCount;
+    cout << "Before cudaGetDriveCount" << endl;
+
+    int deviceCount = -1;
     cudaError_t err = cudaGetDeviceCount(&deviceCount);
-    if (err == cudaSuccess)
+    if (err == cudaSuccess) {
+        cout << "Found devices: " << deviceCount << endl;
         return deviceCount;
+    }
 
     if (err == cudaErrorInsufficientDriver)
     {
+        cout << "CUDA Error: driver issue" << endl;
         int driverVersion = 0;
         cudaDriverGetVersion(&driverVersion);
         if (driverVersion == 0)

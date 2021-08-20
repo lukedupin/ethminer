@@ -507,26 +507,33 @@ public:
 
     void execute()
     {
+        cout << "Start execute loop: " << m_minerType << endl;
+
 #if ETH_ETHASHCL
-        if (m_minerType == MinerType::CL || m_minerType == MinerType::Mixed)
+        if (m_minerType == MinerType::CL || m_minerType == MinerType::Mixed) {
             cout << "Enum devices OpenCL" << endl;
             CLMiner::enumDevices(m_DevicesCollection);
+        }
 #endif
 #if ETH_ETHASHCUDA
-        if (m_minerType == MinerType::CUDA || m_minerType == MinerType::Mixed)
+        if (m_minerType == MinerType::CUDA || m_minerType == MinerType::Mixed) {
             cout << "Enum devices CUDA" << endl;
             CUDAMiner::enumDevices(m_DevicesCollection);
+        }
 #endif
 #if ETH_ETHASHCPU
-        if (m_minerType == MinerType::CPU)
+        if (m_minerType == MinerType::CPU) {
+            cout << "Enum devices CPU" << endl;
             CPUMiner::enumDevices(m_DevicesCollection);
+        }
 #endif
 
         cout << "Device enum successful" << endl;
 
         // Can't proceed without any GPU
-        if (!m_DevicesCollection.size())
+        if (!m_DevicesCollection.size()) {
             throw std::runtime_error("No usable mining devices found");
+        }
 
         // If requested list detected devices and exit
         if (m_shouldListDevices)
