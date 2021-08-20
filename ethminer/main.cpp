@@ -405,14 +405,22 @@ public:
 #endif
 
 
-        if (cl_miner)
+        if (cl_miner) {
+            cout << "CL selected" << endl;
             m_minerType = MinerType::CL;
-        else if (cuda_miner)
+        }
+        else if (cuda_miner) {
+            cout << "CUDA selected" << endl;
             m_minerType = MinerType::CUDA;
-        else if (cpu_miner)
+        }
+        else if (cpu_miner) {
+            cout << "CPU selected" << endl;
             m_minerType = MinerType::CPU;
-        else
+        }
+        else {
+            cout << "Mixed selected" << endl;
             m_minerType = MinerType::Mixed;
+        }
 
         /*
             Operation mode Simulation do not require pool definitions
@@ -507,7 +515,7 @@ public:
 
     void execute()
     {
-        cout << "Start execute loop: " << m_minerType << endl;
+        cout << "Start execute loop: " << (int)m_minerType << endl;
 
 #if ETH_ETHASHCL
         if (m_minerType == MinerType::CL || m_minerType == MinerType::Mixed) {
