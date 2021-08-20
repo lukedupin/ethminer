@@ -1368,6 +1368,7 @@ int main(int argc, char** argv)
             }
 #endif
 
+            cout << "Running main loop" << endl;
             cli.execute();
             cout << endl << endl;
             return 0;
