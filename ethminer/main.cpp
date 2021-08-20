@@ -509,16 +509,20 @@ public:
     {
 #if ETH_ETHASHCL
         if (m_minerType == MinerType::CL || m_minerType == MinerType::Mixed)
+            cout << "Enum devices OpenCL" << endl;
             CLMiner::enumDevices(m_DevicesCollection);
 #endif
 #if ETH_ETHASHCUDA
         if (m_minerType == MinerType::CUDA || m_minerType == MinerType::Mixed)
+            cout << "Enum devices CUDA" << endl;
             CUDAMiner::enumDevices(m_DevicesCollection);
 #endif
 #if ETH_ETHASHCPU
         if (m_minerType == MinerType::CPU)
             CPUMiner::enumDevices(m_DevicesCollection);
 #endif
+
+        cout << "Device enum successful" << endl;
 
         // Can't proceed without any GPU
         if (!m_DevicesCollection.size())
