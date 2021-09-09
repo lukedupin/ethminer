@@ -30,7 +30,7 @@
 #endif
 
 #if defined(cl_amd_media_ops)
-#if PLATFORM == OPENCL_PLATFORM_CLOVER
+// #if PLATFORM == OPENCL_PLATFORM_CLOVER
 /*
  * MESA define cl_amd_media_ops but no amd_bitalign() defined.
  * https://github.com/openwall/john/issues/3454#issuecomment-436899959
@@ -45,7 +45,7 @@ uint2 amd_bitalign(uint2 src0, uint2 src1, uint2 src2)
             "v" (src0.y), "v" (src1.y), "v" (src2.y));
     return dst;
 }
-#endif
+// #endif
 #pragma OPENCL EXTENSION cl_amd_media_ops : enable
 #elif defined(cl_nv_pragma_unroll)
 uint amd_bitalign(uint src0, uint src1, uint src2)
